@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management System - Pro</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <i class="fas fa-warehouse"></i>
+                <h1>Inventory Pro</h1>
+            </div>
+            <div class="header-right">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="searchInput" placeholder="Search items...">
+                </div>
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Food">Food</option>
+                    <option value="Books">Books</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+        </header>
+
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+            <div class="stat-card total-items">
+                <i class="fas fa-boxes"></i>
+                <div>
+                    <h3 id="totalItems">0</h3>
+                    <span>Total Items</span>
+                </div>
+            </div>
+            <div class="stat-card low-stock">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                    <h3 id="lowStockCount">0</h3>
+                    <span>Low Stock</span>
+                </div>
+            </div>
+            <div class="stat-card total-value">
+                <i class="fas fa-dollar-sign"></i>
+                <div>
+                    <h3 id="totalValue">₹0</h3>
+                    <span>Total Value</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Item Modal -->
+        <button class="add-btn" id="addBtn">
+            <i class="fas fa-plus"></i> Add Item
+        </button>
+
+        <!-- Items Table -->
+        <div class="table-container">
+            <table id="itemsTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Threshold</th>
+                        <th>Price</th>
+                        <th>Value</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="itemsBody"></tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination"></div>
+
+        <!-- Analytics Section -->
+        <div class="analytics-section">
+            <h2><i class="fas fa-chart-bar"></i> Analytics</h2>
+            <div class="charts-grid">
+                <canvas id="categoryChart"></canvas>
+                <canvas id="lowStockChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Modal -->
+    <div class="modal" id="itemModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Add New Item</h2>
+            <form id="itemForm">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="category" required>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Food">Food</option>
+                        <option value="Books">Books</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" id="quantity" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label>Min Threshold</label>
+                    <input type="number" id="minThreshold" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label>Price (₹)</label>
+                    <input type="number" id="price" min="0" step="0.01" required>
+                </div>
+                <button type="submit">Save Item</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
